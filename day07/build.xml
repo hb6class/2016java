@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+ 
+<project name="common" basedir="." default="compile">
+<property file="build.properties" />
+ 
+<path id="classpath">
+<!--fileset dir="${lib.dir}" includes="*.jar" /-->
+</path>
+ 
+<target name="clean" description="Clean output directories">
+<delete dir="${build.dir}" />
+</target>
+<target name="compile" description="Compile main source tree java files">
+<mkdir dir="${classes.dir}" />
+<javac destdir="${build.dir}" debug="true" optimize="false"
+deprecation="false" failonerror="true"
+classpathref="classpath" includeantruntime="true" verbose="true">
+<src path="${src.dir}" />
+</javac>
+<copy todir="${classes.dir}" verbose="true">
+<fileset dir="${src.dir}" includes="**/*.xml" />
+</copy>
+</target>
+ 
+</project>
